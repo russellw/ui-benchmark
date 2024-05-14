@@ -4,10 +4,11 @@ import time
 def insert_alphabet():
     text_field.delete(1.0, tk.END)  # Clear the text field before inserting
     start_time = time.time()
-    for letter in 'abcdefghijklmnopqrstuvwxyz':
-        text_field.insert(tk.END, letter + ' ')
-        text_field.update()  # Update the GUI to reflect the changes
-        show_suggestion_box()  # Show suggestion box after each insertion
+    for _ in range(10):  # Repeat the insertion process 10 times
+        for letter in 'abcdefghijklmnopqrstuvwxyz':
+            text_field.insert(tk.END, letter + ' ')
+            text_field.update()  # Update the GUI to reflect the changes
+            show_suggestion_box()  # Show suggestion box after each insertion
     end_time = time.time()
     elapsed_time = end_time - start_time
     result_label.config(text=f"Total time taken: {elapsed_time:.4f} seconds")
