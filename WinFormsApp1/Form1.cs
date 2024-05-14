@@ -96,6 +96,7 @@ namespace TypingAssist
         {
             if (this.textBox.Focused)
             {
+                //TODO: figure out why this still doesn't really work
                 // Calculate the position of the cursor based on the length of the text
                 int textLength = this.textBox.TextLength;
                 Point cursorPosition = this.textBox.GetPositionFromCharIndex(textLength);
