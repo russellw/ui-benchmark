@@ -1,4 +1,4 @@
-namespace WinFormsApp1
+namespace TypingAssist
 {
     internal static class Program
     {
