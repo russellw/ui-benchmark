@@ -96,9 +96,12 @@ namespace TypingAssist
         {
             if (this.textBox.Focused)
             {
-                Point position = this.textBox.GetPositionFromCharIndex(this.textBox.SelectionStart);
-                Point textBoxPosition = this.textBox.PointToScreen(position);
+                // Calculate the position of the cursor based on the length of the text
+                int textLength = this.textBox.TextLength;
+                Point cursorPosition = this.textBox.GetPositionFromCharIndex(textLength);
+                Point textBoxPosition = this.textBox.PointToScreen(cursorPosition);
 
+                // Adjust position for the suggestion box
                 this.suggestionBox.Location = new Point(textBoxPosition.X + 20, textBoxPosition.Y);
                 this.suggestionBox.Visible = true;
                 this.suggestionBox.BringToFront();
