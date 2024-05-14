@@ -42,7 +42,7 @@ root = tk.Tk()
 root.title("Typing Assist Program Benchmark")
 
 # Create a larger Text widget
-text_field = tk.Text(root, height=10, width=50, wrap=tk.WORD)
+text_field = tk.Text(root, height=20, width=80, wrap=tk.WORD)
 text_field.pack(pady=10)
 
 # Bind the key release event to show the suggestion box
@@ -58,3 +58,4 @@ result_label.pack(pady=10)
 
 # Run the Tkinter event loop
 root.mainloop()
+
