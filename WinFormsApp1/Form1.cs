@@ -10,47 +10,62 @@ namespace TypingAssist
         private TextBox textBox;
         private Label resultLabel;
         private Stopwatch stopwatch;
-        private ContextMenuStrip suggestionBox;
+        private ListBox suggestionBox;
 
         public Form1()
         {
-            //InitializeComponent();
             InitializeCustomComponents();
         }
 
         private void InitializeCustomComponents()
         {
+            // Set up the form
+            this.Text = "Typing Assist Program Benchmark";
+            this.Size = new Size(800, 600);
+
+            // Create and configure the TextBox
             this.textBox = new TextBox
             {
                 Multiline = true,
-                Width = 600,
-                Height = 300,
+                Width = 750,
+                Height = 400,
                 Location = new Point(10, 10)
             };
             this.textBox.KeyUp += TextBox_KeyUp;
             this.Controls.Add(this.textBox);
 
+            // Create and configure the start button
             Button startButton = new Button
             {
                 Text = "Start Insertion",
-                Location = new Point(10, 320)
+                Location = new Point(10, 420)
             };
             startButton.Click += StartButton_Click;
             this.Controls.Add(startButton);
 
+            // Create and configure the result label
             this.resultLabel = new Label
             {
-                Location = new Point(120, 325),
+                Location = new Point(120, 425),
                 AutoSize = true
             };
             this.Controls.Add(this.resultLabel);
 
-            this.suggestionBox = new ContextMenuStrip();
-            string[] suggestions = { "1. Lenovo", "2. HP", "3. Dell", "4. Apple", "5. Asus" };
-            foreach (var suggestion in suggestions)
+            // Create and configure the suggestion box
+            this.suggestionBox = new ListBox
             {
-                this.suggestionBox.Items.Add(suggestion);
-            }
+                Visible = false,
+                Width = 100,
+                Height = 80
+            };
+            this.suggestionBox.Items.AddRange(new object[] {
+                "1. Lenovo",
+                "2. HP",
+                "3. Dell",
+                "4. Apple",
+                "5. Asus"
+            });
+            this.Controls.Add(this.suggestionBox);
         }
 
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
@@ -82,8 +97,11 @@ namespace TypingAssist
             if (this.textBox.Focused)
             {
                 Point position = this.textBox.GetPositionFromCharIndex(this.textBox.SelectionStart);
-                position.Offset(this.textBox.Location);
-                this.suggestionBox.Show(this, new Point(position.X + 20, position.Y + 30));
+                Point textBoxPosition = this.textBox.PointToScreen(position);
+
+                this.suggestionBox.Location = new Point(textBoxPosition.X + 20, textBoxPosition.Y);
+                this.suggestionBox.Visible = true;
+                this.suggestionBox.BringToFront();
             }
         }
     }
