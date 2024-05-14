@@ -7,11 +7,12 @@ def insert_alphabet():
     for letter in 'abcdefghijklmnopqrstuvwxyz':
         text_field.insert(tk.END, letter + ' ')
         text_field.update()  # Update the GUI to reflect the changes
+        show_suggestion_box()  # Show suggestion box after each insertion
     end_time = time.time()
     elapsed_time = end_time - start_time
     result_label.config(text=f"Total time taken: {elapsed_time:.4f} seconds")
 
-def show_suggestion_box(event):
+def show_suggestion_box(event=None):
     # Get the position of the cursor
     cursor_index = text_field.index(tk.INSERT)
     x, y, _, _ = text_field.bbox(cursor_index)
