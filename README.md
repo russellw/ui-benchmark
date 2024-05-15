@@ -1,4 +1,7 @@
 # ui-benchmark
 Benchmark UI frameworks
 
-Tkinter 2.4063
+Framework|Time (seconds)
+---|---
+Tkinter|2.4063
+WPF|6.37598
